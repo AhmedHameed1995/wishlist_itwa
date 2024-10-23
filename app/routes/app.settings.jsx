@@ -17,19 +17,34 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import { useState } from "react";
 import { useLoaderData, json, Form } from "@remix-run/react";
 
+import db from "../db.server";
 
 export async function loader() {
-    let settings = {
-      name: "My App",
-      description: "My App Description",
-    }
-
+  // console.log()
+    let settings = await db.settings.findFirst();
+    console.log("settings ---->", settings);
     return json(settings);
 }
 
 export async function action({ request }) {
     let settings = await request.formData();
     settings = Object.fromEntries(settings);
+
+    await db.settings.upsert({
+      where: {
+        id: '1'
+      },
+      update: {
+        name:settings.name,
+        description:settings.description,
+      },
+      create: {
+        id: '1',
+        name:settings.name,
+        description:settings.description,
+      }
+    });
+
     return json(settings);
 }
 
@@ -59,8 +74,8 @@ export default function SettingsPage() {
           <Card roundedAbove="sm">
             <Form method="POST">
               <BlockStack gap="400">
-                <TextField label="Settings" name="name" value={formSaved.name} onChange={(value) => setFormSaved({ ...formSaved, name:value })} />
-                <TextField label="Preferences" name="description" value={formSaved.description} onChange={(value) => setFormSaved({ ...formSaved, name:value })} />
+                <TextField label="Settings" name="name" value={formSaved?.name} onChange={(value) => setFormSaved({ ...formSaved, name:value })} />
+                <TextField label="Preferences" name="description" value={formSaved?.description} onChange={(value) => setFormSaved({ ...formSaved, description:value })} />
                 <Button submit={true}>Save</Button>
               </BlockStack>
             </Form>

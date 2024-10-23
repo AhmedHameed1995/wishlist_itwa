@@ -3,7 +3,7 @@
 client_id = "4fce677f8373c63bb50e390fd6daec71"
 name = "wishlist_itwa"
 handle = "wishlist_itwa"
-application_url = "https://enabling-psychiatry-growing-ready.trycloudflare.com"
+application_url = "https://humidity-between-ref-collections.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://enabling-psychiatry-growing-ready.trycloudflare.com/auth/callback",
-  "https://enabling-psychiatry-growing-ready.trycloudflare.com/auth/shopify/callback",
-  "https://enabling-psychiatry-growing-ready.trycloudflare.com/api/auth/callback"
+  "https://humidity-between-ref-collections.trycloudflare.com/auth/callback",
+  "https://humidity-between-ref-collections.trycloudflare.com/auth/shopify/callback",
+  "https://humidity-between-ref-collections.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
